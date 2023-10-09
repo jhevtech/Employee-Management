@@ -95,3 +95,6 @@ def intro():
 
 intro()
 print("Goodbye.")
+
+#fix the part where you delete a user the number refreshes and sort starting back from 1. USE linked list to do that
+#Have a label above each column Name, Position, Salary.
