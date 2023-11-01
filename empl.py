@@ -13,40 +13,49 @@ def listEmp():
 
 #function to add new employee info to records
 def addEmp():
-    global dEmp
+    dEmp
     strEmpName = input("Name of employee: ")
     strEmpJob = input("What is the employees job? ")
     floatSalary = float(input("Employees salary: "))
     intKey = getNewId()
     dIndEmp = {"name":strEmpName, "job":strEmpJob, "salary":floatSalary}
     dEmp[intKey] = dIndEmp
-    print("List of employees:")
+    print("\nList of employees: ")
     listEmp()
 
 #function to create ID for new employee
 def getNewId():
-    global dEmp
+    dEmp
     arTemp = []
     for intKey in dEmp:
         arTemp.append(intKey)
     arTemp.sort(reverse=True)
     return arTemp[0] + 1
 
+#update employee id
+def update_employee_ids():
+    dEmp
+    employee_ids = list(dEmp.keys())
+    for i in range (len(employee_ids)):
+        dEmp[i + 1] = dEmp.pop(employee_ids[i])
+
 #function to remove an employee from database
 def remEmp():
-    global dEmp
+    dEmp
     listEmp()
-    intKey = int(input("Enter employee number you want to delete:"))
+    intKey = int(input("\nEnter employee number you want to delete: "))
     dEmp.pop(intKey)
-    print("Employee has been removed. Here is the updated list.")
+    update_employee_ids()
+    print("\nEmployee has been removed. Here is the updated list.")
     listEmp()
+
 #creating ui
 print("~" * 80)
 print("|", "Welcome to the Employee Database".center(76),"|")
 print("~" * 80)
 
 def intro():
-    print("Hi! What would you like to do today?")
+    print("\nHi! What would you like to do today?")
 #intro()
 #print("Hi! What would you like to do today?")
     #loop for program
@@ -55,7 +64,8 @@ def intro():
         # Present a menu choice.
         #listEmp()
         #print("Hi! What would you like to do today?")
-        strMenu = input("1: View Employees,  2: Add Employee, 3: Remove Employee, 4: Exit: ")
+        strMenu = input("\n1: View Employees,  2: Add Employee, 3: Remove Employee, 4: Exit: ")
+        print("\n")
 
         #ask user to view list
         if strMenu == "1":
@@ -70,24 +80,24 @@ def intro():
             break
         # Otherwise, invalid input
         else:
-            print("Invalid input.")
+            print("\nInvalid input.")
 
         # Ask user if they would like to do more.
-        print("Do something else?")
+        print("\nDo something else?")
         strMenu2 = input("(y)es or (n)o: ")
 
         # If not, then exit and say goodbye
         if strMenu2 == "n":
             break
         else:
-            strMenu = input("1: Add Employee, 2: Remove Employee: ")
+            strMenu = input("\n1: Add Employee, 2: Remove Employee: ")
             
             if strMenu == "1":
                     addEmp()
                 # If user chooses remove employee, then remove employee.
             elif strMenu == "2":
                     remEmp()
-            print("Do something else?")
+            print("\nDo something else?")
             strMenu2 = input("(y)es or (n)o: ")
 
             #if strMenu2 == "n":
@@ -96,5 +106,4 @@ def intro():
 intro()
 print("Goodbye.")
 
-#fix the part where you delete a user the number refreshes and sort starting back from 1. USE linked list to do that
 #Have a label above each column Name, Position, Salary.
